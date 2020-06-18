@@ -1,0 +1,60 @@
+<!--pre>{{characters.results | json }}</pre-->
+<div class="container-fluid" *ngIf="isLoaded;else other_content">
+  <div class="row bg-dark min-vh-100 m-0 opacity-4 justify-content-center align-items-center">
+    <div class="col-12">
+      <div class="text-center text-success">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #other_content>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-group my-5">
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-3 d-flex align-items-stretch" *ngFor=" let character of characters; trackBy: trackByFn;">
+            <div class="card bg-dark text-white">
+              <div class="card-header p-0 position-relative">
+                <img src="{{character.image}}" class="card-img" alt="...">
+                <div class="card-img-overlay pb-2 pt-2">
+                  <h3 class="card-title m-0">{{character.name}}</h3>
+                  <p class="card-text">id: {{character.id}} - created {{character.created | amTimeAgo}}</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr>
+                    <td>STATUS</td>
+                    <td>{{character.status}}</td>
+                  </tr>
+                  <tr>
+                    <td>SPECIES</td>
+                    <td>{{character.species}}</td>
+                  </tr>
+                  <tr>
+                    <td>GENDER</td>
+                    <td>{{character.gender}}</td>
+                  </tr>
+                  <tr>
+                    <td>ORIGIN</td>
+                    <td>{{character.origin.name}}</td>
+                  </tr>
+                  <tr>
+                    <td>LAST LOCATION</td>
+                    <td>{{character.location.name}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
